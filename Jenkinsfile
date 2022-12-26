@@ -5,21 +5,27 @@ pipeline {
         }
     }
     stages {
-        stage('Clone Git') {
+        stage('Clone') {
             steps {
-                echo 'Cloning from git...'
+                echo 'Cloning...'
                 git credentialsId: 'github_login_jaimeadm', url: 'https://github.com/jaimeadm/phpunit.git'
             }
         }
-        stage('Composer Update') {
+        stage('Build') {
             steps {
 		        echo 'Bulding...'
                 sh 'composer update'
             }
         }
-        stage('PHPUnit Test') {
+        stage('Test') {
             steps {
+                echo 'Testing...'
                 sh './vendor/bin/phpunit --bootstrap vendor/autoload.php tests'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
             }
             post {
                 always {
