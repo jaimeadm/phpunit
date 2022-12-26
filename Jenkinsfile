@@ -23,7 +23,7 @@ pipeline {
             }
             post {
                 always {
-                    //emailext attachLog: true, body: 'OK: Veja o log anexado', subject: 'Build $BUILD_NUMBER sucesso', to: 'alan.silva@jaime.com.br'
+                    emailext attachLog: true, body: 'OK: Veja o log anexado', subject: 'Build $BUILD_NUMBER sucesso', to: 'alan.silva@jaime.com.br'
                 }
             }
         }
