@@ -4,7 +4,6 @@ use PHPUnit\Framework\TestCase;
 class AssertativaTest extends TestCase {
 
     public function testArrayHasKey() {
-        //assertArrayHasKey
 
         $a = new Assertativa();
         $array = $a->getArray();
@@ -13,7 +12,6 @@ class AssertativaTest extends TestCase {
     }
 
     public function testCount() {
-        //assertCount
 
         $a = new Assertativa();
         $array = $a->getArray();
@@ -22,7 +20,6 @@ class AssertativaTest extends TestCase {
     }
 
     public function testEmpty() {
-        //assertEmpty
 
         $a = new Assertativa();
         $array = array(); //$a->getArray();
@@ -31,7 +28,6 @@ class AssertativaTest extends TestCase {
     }
 
     public function testContain() {
-        //assertContains
 
         $array = array(1, 2, 3, 4, 5, 'Fulano');
 
@@ -39,7 +35,6 @@ class AssertativaTest extends TestCase {
     }
 
     public function testContainOnly() {
-        //assertContainsOnly
 
         $array = array(1, 2, 3, 4, 5);
 
@@ -47,16 +42,73 @@ class AssertativaTest extends TestCase {
     }
 
     public function testAttributeExists() {
-        //assertClassHasAttribute
 
         $this->assertClassHasAttribute('numero', Assertativa::class);
     }
 
     public function testRegex() {
         //assertRegExp (deprecated)
-        //assertMatchesRegularExpression
 
         $this->assertMatchesRegularExpression('/^[a-z]{3}$/', 'ola');
+    }
+
+    public function testDirExists() {
+        $this->assertDirectoryExists('classes');
+    }
+
+    public function testDirPermissionRead() {
+        $this->assertDirectoryIsReadable('tests');
+    }
+
+    public function testDirPermissionWrite() {
+        $this->assertDirectoryIsWritable('tests');
+    }
+
+    public function testFilaEquals() {
+        $this->assertFileEquals('lista1.txt', 'lista2.txt');
+    }
+
+    public function testBooleanTrue() {
+        $this->assertTrue(is_file('lista1.txt'));
+    }
+
+    public function testBooleanFalse() {
+        $this->assertFalse(is_file('classes'));
+    }
+
+    public function testNull() {
+        $idade = null;
+        $this->assertNull($idade);
+    }
+
+    public function testVarType() {
+        //assertInternalType (deprecated)
+
+        $a = new Assertativa();
+        $this->assertIsArray($a->getArray());
+    }
+
+    public function testEquals() {
+        $nome = 'fulano';
+        $this->assertEquals('fulano', $nome);
+    }
+
+    public function testString() {
+        $texto = "Olá, tudo bem?";
+        $this->assertStringStartsWith('Olá', $texto);
+        $this->assertStringEndsWith('bem?', $texto);
+    }
+
+    public function testNumbersGreater() {
+        $totalUsuarios = 15;
+        $this->assertGreaterThan(10, $totalUsuarios);
+        $this->assertGreaterThanOrEqual(15, $totalUsuarios);
+    }
+
+    public function testNumbersLess() {
+        $totalUsuarios = 9;
+        $this->assertLessThan(10, $totalUsuarios);
+        $this->assertLessThanOrEqual(15, $totalUsuarios);
     }
 
 }
